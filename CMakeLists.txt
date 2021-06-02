@@ -4,6 +4,7 @@ set(PANGOLIN_VERSION_MAJOR 0)
 set(PANGOLIN_VERSION_MINOR 6)
 set(PANGOLIN_VERSION ${PANGOLIN_VERSION_MAJOR}.${PANGOLIN_VERSION_MINOR})
 
+set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/Pangolin_${CMAKE_BUILD_TYPE}")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules/")
 
 # Platform configuration vars
@@ -17,18 +18,18 @@ SET(CPACK_PACKAGE_VERSION_MINOR ${PANGOLIN_VERSION_MINOR})
 SET(CPACK_PACKAGE_VERSION_PATCH "0")
 include(CPack)
 
-option( BUILD_TESTS "Build Tests" ON )
-option( BUILD_TOOLS "Build Examples" ON )
-option( BUILD_EXAMPLES "Build Tools" ON )
+option( BUILD_TESTS "Build Tests" OFF )
+option( BUILD_TOOLS "Build Examples" OFF )
+option( BUILD_EXAMPLES "Build Tools" OFF )
 
 set (CMAKE_CXX_STANDARD 14)
 
 if(_WIN_)
-    option( BUILD_SHARED_LIBS    "Build Shared Library" OFF)
+    option( BUILD_SHARED_LIBS    "Build Shared Library" ON)
     option( BUILD_EXTERN_GLEW    "Automatically download, build and compile GLEW" ON)
     option( BUILD_EXTERN_LIBPNG  "Automatically download, build and compile libpng" ON)
     option( BUILD_EXTERN_LIBJPEG "Automatically download, build and compile libjpeg" ON)
-    option( MSVC_USE_STATIC_CRT  "Use static C Runtime with MSVC, /MT instead of /MD" ON)
+    option( MSVC_USE_STATIC_CRT  "Use static C Runtime with MSVC, /MT instead of /MD" OFF)
 
     # Make sure there are no erroneous C Runtime flags
     list(APPEND FLAG_VARS
